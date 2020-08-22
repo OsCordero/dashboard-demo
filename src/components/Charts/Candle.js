@@ -21,8 +21,9 @@ import {
   SingleValueTooltip,
 } from 'react-stockcharts/lib/tooltip';
 import { last } from 'react-stockcharts/lib/utils';
+import { fitWidth } from 'react-stockcharts/lib/helper';
 
-const CandleChart = ({ data: initialData }) => {
+const CandleChart = ({ data: initialData, width }) => {
   const mouseEdgeAppearance = {
     textFill: '#542605',
     stroke: '#05233B',
@@ -89,9 +90,9 @@ const CandleChart = ({ data: initialData }) => {
   return (
     <ChartCanvas
       height={600}
-      width={1000}
+      width={width}
       ratio={1}
-      margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
+      margin={{ left: 50, right: 50, top: 20, bottom: 30 }}
       type="svg"
       seriesName="MSFT"
       data={data}
@@ -187,4 +188,5 @@ const CandleChart = ({ data: initialData }) => {
   );
 };
 
-export default CandleChart;
+const CandleChartFixed = fitWidth(CandleChart);
+export default CandleChartFixed;
