@@ -27,9 +27,12 @@ const Sales = ({ className, ...rest }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`../data/crude/${filter}.json`);
-      const data = await response.json();
-      setCrudeData(data);
+      const response = await fetch(
+        'https://parcero-api.herokuapp.com/api/prices/?data_before=2020-09-06&date_after=2020-08-01&stock=4&page_size=500'
+      );
+      const { results } = await response.json();
+
+      setCrudeData(results);
     };
     fetchData();
   }, [filter]);
